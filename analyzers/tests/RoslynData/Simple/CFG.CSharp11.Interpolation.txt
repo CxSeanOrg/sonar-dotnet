@@ -1,0 +1,20 @@
+// http://viz-js.com/
+// https://edotor.net/?engine=dot#digraph%20%22Interpolation%22%20%7B%0D%0Asubgraph%20%22cluster_1%22%20%7B%0Alabel%20%3D%20%22LocalLifetime%20region%2C%20Locals%3A%20value%22%0D%0Acfg0_block1%20%5Bshape%3Drecord%20label%3D%22%7BBLOCK%20%231%7C0%23%3A%20SimpleAssignmentOperation%3A%20value%20%3D%20%24%5C%22lit%5C%7B42%5C%7D%20arg%5C%7Barg%5C%7D%20intArg%5C%7BintArg%5C%7D%5C%22%7C1%23%3A%200%23.Target%3A%20LocalReferenceOperation%3A%20value%20%3D%20%24%5C%22lit%5C%7B42%5C%7D%20arg%5C%7Barg%5C%7D%20intArg%5C%7BintArg%5C%7D%5C%22%7C1%23%3A%200%23.Value%3A%20InterpolatedStringOperation%3A%20%24%5C%22lit%5C%7B42%5C%7D%20arg%5C%7Barg%5C%7D%20intArg%5C%7BintArg%5C%7D%5C%22%7C2%23%3A%20InterpolatedStringTextOperation%3A%20lit%7C3%23%3A%202%23.Text%3A%20LiteralOperation%3A%20lit%7C2%23%3A%20InterpolationOperation%3A%20%5C%7B42%5C%7D%7C3%23%3A%202%23.Expression%3A%20LiteralOperation%3A%2042%7C2%23%3A%20InterpolatedStringTextOperation%3A%20%20arg%7C3%23%3A%202%23.Text%3A%20LiteralOperation%3A%20%20arg%7C2%23%3A%20InterpolationOperation%3A%20%5C%7Barg%5C%7D%7C3%23%3A%202%23.Expression%3A%20ParameterReferenceOperation%3A%20arg%7C2%23%3A%20InterpolatedStringTextOperation%3A%20%20intArg%7C3%23%3A%202%23.Text%3A%20LiteralOperation%3A%20%20intArg%7C2%23%3A%20InterpolationOperation%3A%20%5C%7BintArg%5C%7D%7C3%23%3A%202%23.Expression%3A%20ParameterReferenceOperation%3A%20intArg%7C%23%23%23%23%23%23%23%23%23%23%7D%22%5D%0D%0A%7D%0D%0Acfg0_block0%20%5Bshape%3Drecord%20label%3D%22%7BENTRY%20%230%7D%22%5D%0D%0Acfg0_block2%20%5Bshape%3Drecord%20label%3D%22%7BEXIT%20%232%7D%22%5D%0D%0Acfg0_block0%20-%3E%20cfg0_block1%0D%0Acfg0_block1%20-%3E%20cfg0_block2%0D%0A%7D%0D%0A
+
+/*
+public void Interpolation(string arg, int intArg)
+    {
+        var value = $"lit{42} arg{arg} intArg{intArg}";
+    }
+*/
+
+digraph "Interpolation" {
+subgraph "cluster_1" {
+label = "LocalLifetime region, Locals: value"
+cfg0_block1 [shape=record label="{BLOCK #1|0#: SimpleAssignmentOperation: value = $\"lit\{42\} arg\{arg\} intArg\{intArg\}\"|1#: 0#.Target: LocalReferenceOperation: value = $\"lit\{42\} arg\{arg\} intArg\{intArg\}\"|1#: 0#.Value: InterpolatedStringOperation: $\"lit\{42\} arg\{arg\} intArg\{intArg\}\"|2#: InterpolatedStringTextOperation: lit|3#: 2#.Text: LiteralOperation: lit|2#: InterpolationOperation: \{42\}|3#: 2#.Expression: LiteralOperation: 42|2#: InterpolatedStringTextOperation:  arg|3#: 2#.Text: LiteralOperation:  arg|2#: InterpolationOperation: \{arg\}|3#: 2#.Expression: ParameterReferenceOperation: arg|2#: InterpolatedStringTextOperation:  intArg|3#: 2#.Text: LiteralOperation:  intArg|2#: InterpolationOperation: \{intArg\}|3#: 2#.Expression: ParameterReferenceOperation: intArg|##########}"]
+}
+cfg0_block0 [shape=record label="{ENTRY #0}"]
+cfg0_block2 [shape=record label="{EXIT #2}"]
+cfg0_block0 -> cfg0_block1
+cfg0_block1 -> cfg0_block2
+}

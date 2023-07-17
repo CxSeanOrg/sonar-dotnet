@@ -19,7 +19,14 @@ public class Sample
 
     public void EmptyStatements()
     {
-        ; ; ; ; ; ; ; ;
+        ;
+        ;
+        ;
+        ;
+        ;
+        ;
+        ;
+        ;
     }
 
     public void VariableDeclaration()
@@ -68,6 +75,19 @@ public class Sample
     {
         ArrowAdd(b: 1, a: 100);
     }
+
+    public void Interpolation(string arg, int intArg)
+    {
+        var value = $"lit{42} arg{arg} intArg{intArg}";
+    }
+
+
+    public void InvokeOptionalParameters()
+    {
+        WithOptionalParameters(42);
+    }
+
+    public void WithOptionalParameters(int arg, string name = "42", int valueOpt = 42) { }
 }
 
 public class CallingBase : EmptyBase
