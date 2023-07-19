@@ -197,6 +197,11 @@ public class Sample
         };
     }
 
+    public void CoalesceAssignment(string a, string b)
+    {
+        a ??= b;
+    }
+
     public void CoalesceSingle(string a, string b)
     {
         var c = a ?? b;
