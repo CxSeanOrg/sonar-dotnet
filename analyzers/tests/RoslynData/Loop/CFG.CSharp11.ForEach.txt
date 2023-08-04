@@ -4,7 +4,7 @@
 /*
 public void ForEach()
     {
-        foreach(var i in new[] { 0, 1, 2, 4, 8, 16 })
+        foreach (var i in new[] { 0, 1, 2, 4, 8, 16 })
         {
             var value = i.ToString();
         }
