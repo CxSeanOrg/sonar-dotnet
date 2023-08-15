@@ -1,0 +1,46 @@
+// http://viz-js.com/
+// https://edotor.net/?engine=dot#digraph%20%22Tainted_Nested%22%20%7B%0D%0Asubgraph%20%22cluster_1%22%20%7B%0Alabel%20%3D%20%22LocalLifetime%20region%2C%20Locals%3A%20i%2C%20j%22%0D%0Acfg0_block1%20%5Bshape%3Drecord%20label%3D%22%7BBLOCK%20%231%7C0%23%3A%20SimpleAssignmentOperation%3A%20i%20%3D%200%7C1%23%3A%200%23.Target%3A%20LocalReferenceOperation%3A%20i%20%3D%200%7C1%23%3A%200%23.Value%3A%20LiteralOperation%3A%200%7C%23%23%23%23%23%23%23%23%23%23%7C0%23%3A%20SimpleAssignmentOperation%3A%20j%20%3D%200%7C1%23%3A%200%23.Target%3A%20LocalReferenceOperation%3A%20j%20%3D%200%7C1%23%3A%200%23.Value%3A%20LiteralOperation%3A%200%7C%23%23%23%23%23%23%23%23%23%23%7D%22%5D%0D%0Acfg0_block2%20%5Bshape%3Drecord%20label%3D%22%7BBLOCK%20%232%7C%23%23%20BranchValue%20%23%23%7C0%23%3A%20BinaryOperation%3A%20i%20%5C%3C%20tainted%7C1%23%3A%200%23.LeftOperand%3A%20LocalReferenceOperation%3A%20i%7C1%23%3A%200%23.RightOperand%3A%20ParameterReferenceOperation%3A%20tainted%7C%23%23%23%23%23%23%23%23%23%23%7D%22%5D%0D%0Acfg0_block3%20%5Bshape%3Drecord%20label%3D%22%7BBLOCK%20%233%7C0%23%3A%20ExpressionStatementOperation%3A%20ExpensiveCall()%3B%7C1%23%3A%200%23.Operation%3A%20InvocationOperation%3A%20ExpensiveCall%3A%20ExpensiveCall()%7C2%23%3A%201%23.Instance%3A%20InstanceReferenceOperation%3A%20ExpensiveCall%7C%23%23%23%23%23%23%23%23%23%23%7D%22%5D%0D%0Acfg0_block4%20%5Bshape%3Drecord%20label%3D%22%7BBLOCK%20%234%7C%23%23%20BranchValue%20%23%23%7C0%23%3A%20BinaryOperation%3A%20j%20%5C%3C%20tainted%7C1%23%3A%200%23.LeftOperand%3A%20LocalReferenceOperation%3A%20j%7C1%23%3A%200%23.RightOperand%3A%20ParameterReferenceOperation%3A%20tainted%7C%23%23%23%23%23%23%23%23%23%23%7D%22%5D%0D%0Acfg0_block5%20%5Bshape%3Drecord%20label%3D%22%7BBLOCK%20%235%7C0%23%3A%20ExpressionStatementOperation%3A%20ExpensiveCall()%3B%7C1%23%3A%200%23.Operation%3A%20InvocationOperation%3A%20ExpensiveCall%3A%20ExpensiveCall()%7C2%23%3A%201%23.Instance%3A%20InstanceReferenceOperation%3A%20ExpensiveCall%7C%23%23%23%23%23%23%23%23%23%23%7C0%23%3A%20ExpressionStatementOperation%3A%20j%2B%2B%3B%7C1%23%3A%200%23.Operation%3A%20IncrementOrDecrementOperation%3A%20j%2B%2B%7C2%23%3A%201%23.Target%3A%20LocalReferenceOperation%3A%20j%7C%23%23%23%23%23%23%23%23%23%23%7C%23%23%20BranchValue%20%23%23%7C0%23%3A%20BinaryOperation%3A%20j%20%3D%3D%20100%7C1%23%3A%200%23.LeftOperand%3A%20LocalReferenceOperation%3A%20j%7C1%23%3A%200%23.RightOperand%3A%20LiteralOperation%3A%20100%7C%23%23%23%23%23%23%23%23%23%23%7D%22%5D%0D%0Acfg0_block6%20%5Bshape%3Drecord%20label%3D%22%7BBLOCK%20%236%7C0%23%3A%20ExpressionStatementOperation%3A%20i%2B%2B%3B%7C1%23%3A%200%23.Operation%3A%20IncrementOrDecrementOperation%3A%20i%2B%2B%7C2%23%3A%201%23.Target%3A%20LocalReferenceOperation%3A%20i%7C%23%23%23%23%23%23%23%23%23%23%7D%22%5D%0D%0A%7D%0D%0Acfg0_block0%20%5Bshape%3Drecord%20label%3D%22%7BENTRY%20%230%7D%22%5D%0D%0Acfg0_block7%20%5Bshape%3Drecord%20label%3D%22%7BEXIT%20%237%7D%22%5D%0D%0Acfg0_block0%20-%3E%20cfg0_block1%0D%0Acfg0_block1%20-%3E%20cfg0_block2%0D%0Acfg0_block6%20-%3E%20cfg0_block2%0D%0Acfg0_block2%20-%3E%20cfg0_block3%20%5Blabel%3D%22Else%22%5D%0D%0Acfg0_block3%20-%3E%20cfg0_block4%0D%0Acfg0_block5%20-%3E%20cfg0_block4%20%5Blabel%3D%22WhenFalse%22%5D%0D%0Acfg0_block4%20-%3E%20cfg0_block5%20%5Blabel%3D%22Else%22%5D%0D%0Acfg0_block4%20-%3E%20cfg0_block6%20%5Blabel%3D%22WhenFalse%22%5D%0D%0Acfg0_block5%20-%3E%20cfg0_block6%20%5Blabel%3D%22Else%22%5D%0D%0Acfg0_block2%20-%3E%20cfg0_block7%20%5Blabel%3D%22WhenFalse%22%5D%0D%0A%7D%0D%0A
+
+/*
+public void Tainted_Nested(int tainted)
+    {
+        var i = 0;
+        var j = 0;
+        while (i < tainted)
+        {
+            ExpensiveCall();
+            while (j < tainted)
+            {
+                ExpensiveCall();
+                j++;
+                if (j == 100)
+                    break;
+            }
+            i++;
+        }
+    }
+*/
+
+digraph "Tainted_Nested" {
+subgraph "cluster_1" {
+label = "LocalLifetime region, Locals: i, j"
+cfg0_block1 [shape=record label="{BLOCK #1|0#: SimpleAssignmentOperation: i = 0|1#: 0#.Target: LocalReferenceOperation: i = 0|1#: 0#.Value: LiteralOperation: 0|##########|0#: SimpleAssignmentOperation: j = 0|1#: 0#.Target: LocalReferenceOperation: j = 0|1#: 0#.Value: LiteralOperation: 0|##########}"]
+cfg0_block2 [shape=record label="{BLOCK #2|## BranchValue ##|0#: BinaryOperation: i \< tainted|1#: 0#.LeftOperand: LocalReferenceOperation: i|1#: 0#.RightOperand: ParameterReferenceOperation: tainted|##########}"]
+cfg0_block3 [shape=record label="{BLOCK #3|0#: ExpressionStatementOperation: ExpensiveCall();|1#: 0#.Operation: InvocationOperation: ExpensiveCall: ExpensiveCall()|2#: 1#.Instance: InstanceReferenceOperation: ExpensiveCall|##########}"]
+cfg0_block4 [shape=record label="{BLOCK #4|## BranchValue ##|0#: BinaryOperation: j \< tainted|1#: 0#.LeftOperand: LocalReferenceOperation: j|1#: 0#.RightOperand: ParameterReferenceOperation: tainted|##########}"]
+cfg0_block5 [shape=record label="{BLOCK #5|0#: ExpressionStatementOperation: ExpensiveCall();|1#: 0#.Operation: InvocationOperation: ExpensiveCall: ExpensiveCall()|2#: 1#.Instance: InstanceReferenceOperation: ExpensiveCall|##########|0#: ExpressionStatementOperation: j++;|1#: 0#.Operation: IncrementOrDecrementOperation: j++|2#: 1#.Target: LocalReferenceOperation: j|##########|## BranchValue ##|0#: BinaryOperation: j == 100|1#: 0#.LeftOperand: LocalReferenceOperation: j|1#: 0#.RightOperand: LiteralOperation: 100|##########}"]
+cfg0_block6 [shape=record label="{BLOCK #6|0#: ExpressionStatementOperation: i++;|1#: 0#.Operation: IncrementOrDecrementOperation: i++|2#: 1#.Target: LocalReferenceOperation: i|##########}"]
+}
+cfg0_block0 [shape=record label="{ENTRY #0}"]
+cfg0_block7 [shape=record label="{EXIT #7}"]
+cfg0_block0 -> cfg0_block1
+cfg0_block1 -> cfg0_block2
+cfg0_block6 -> cfg0_block2
+cfg0_block2 -> cfg0_block3 [label="Else"]
+cfg0_block3 -> cfg0_block4
+cfg0_block5 -> cfg0_block4 [label="WhenFalse"]
+cfg0_block4 -> cfg0_block5 [label="Else"]
+cfg0_block4 -> cfg0_block6 [label="WhenFalse"]
+cfg0_block5 -> cfg0_block6 [label="Else"]
+cfg0_block2 -> cfg0_block7 [label="WhenFalse"]
+}

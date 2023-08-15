@@ -121,5 +121,23 @@ public class Sample
         }
     }
 
+    public void Tainted_Nested(int tainted)
+    {
+        var i = 0;
+        var j = 0;
+        while (i < tainted)
+        {
+            ExpensiveCall();
+            while (j < tainted)
+            {
+                ExpensiveCall();
+                j++;
+                if (j == 100)
+                    break;
+            }
+            i++;
+        }
+    }
+
     private void ExpensiveCall() { }
 }
