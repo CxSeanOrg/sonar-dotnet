@@ -4,9 +4,9 @@
     ".NETStandard,Version=v2.0": {
       "Google.Protobuf.Tools": {
         "type": "Direct",
-        "requested": "[3.6.1, )",
-        "resolved": "3.6.1",
-        "contentHash": "mNgfZ1A7UtbZUOIA8+UcKOouKnbd2tu9CKctCvGXFunZGrViWk6QbNwSBc268Sle9Gwl+WQB+u6qQezp5f9y3w=="
+        "requested": "[3.25.1, )",
+        "resolved": "3.25.1",
+        "contentHash": "iUZvqVJ6O8enV5OuXtH7nYazr8sNyNyjcaATIUC2QN5Gh81oDNLO5+W5qy4z78gZ/gLAF022yweawZd4llfypw=="
       },
       "Grpc.Tools": {
         "type": "Direct",
