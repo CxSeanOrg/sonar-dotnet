@@ -53,7 +53,7 @@ public class CodedOutputStream
         stream.Flush();
 
     public void WriteRawTag(byte value) =>
-        stream.WriteByte(value);
+        stream.WriteByte(value);    // ToDo: This is likely slow, we should optimize it with intermediate buffer
 
     public void WriteBool(bool value) =>
         stream.WriteByte(value ? (byte)1 : (byte)0);
@@ -80,7 +80,7 @@ public class CodedOutputStream
     {
         byte[] buff = Encoding.UTF8.GetBytes(value);
         WriteLength(buff.Length);
-        stream.Write(buff, 0, buff.Length); // ToDo: This is likely slow, we should optimize it with internal buffers
+        stream.Write(buff, 0, buff.Length); // ToDo: This is likely slow, we should optimize it with intermediate buffer and flushing
     }
 
     public void WriteMessage(IMessage message)
