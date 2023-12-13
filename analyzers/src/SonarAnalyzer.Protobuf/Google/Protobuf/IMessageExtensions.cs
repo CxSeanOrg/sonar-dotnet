@@ -24,8 +24,11 @@ namespace Google.Protobuf;
 
 public static class IMessageExtensions
 {
-    public static void WriteDelimitedTo(this IMessage message, Stream target)
+    public static void WriteDelimitedTo(this IMessage message, Stream output)
     {
-        throw new NotImplementedException();
+        CodedOutputStream codedOutput = new CodedOutputStream(output);
+        codedOutput.WriteLength(message.CalculateSize());
+        message.WriteTo(codedOutput);
+        codedOutput.Flush();
     }
 }

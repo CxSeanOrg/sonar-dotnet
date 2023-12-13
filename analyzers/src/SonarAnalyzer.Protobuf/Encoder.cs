@@ -22,13 +22,9 @@ namespace SonarAnalyzer.Protobuf;
 
 public static class Encoder
 {
-    public static byte[] ToVariant(int value)
+    public static byte[] ToVariant(uint value)
     {
         var ret = new List<byte>(); // FIXME: Too expensive, expand without list
-        if (value < 0)
-        {
-            throw new NotImplementedException();    // FIXME: Not finished, needs zig-zag
-        }
         do
         {
             ret.Add((byte)(value < 128 ? value : (value & 0b01111111) | 0b10000000));

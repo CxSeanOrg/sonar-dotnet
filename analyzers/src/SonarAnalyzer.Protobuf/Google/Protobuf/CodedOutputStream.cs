@@ -18,96 +18,97 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-using System.Collections.Generic;
+using System.IO;
 using System.Text;
-using System;
 
 namespace Google.Protobuf;
 
 public class CodedOutputStream
 {
-    public static int ComputeEnumSize(int value)
-    {
-        throw new NotImplementedException();
-    }
+    private readonly Stream stream;
+
+    public CodedOutputStream(Stream stream) =>
+        this.stream = stream;
+
+    public static int ComputeEnumSize(int value) =>
+        ComputeInt32Size(value);
 
     public static int ComputeStringSize(string value)
     {
-        throw new NotImplementedException();
+        var count = Encoding.UTF8.GetByteCount(value);
+        return ComputeRawVarint32Size((uint)count) + count;
     }
 
-    public static int ComputeInt32Size(int value)
-    {
-        throw new NotImplementedException();
-    }
+    public static int ComputeInt32Size(int value) =>
+        value >= 0
+            ? ComputeRawVarint32Size((uint)value)
+            : 10;
 
     public static int ComputeMessageSize(IMessage message)
     {
         throw new NotImplementedException();
     }
 
-    public void WriteRawTag(byte value)
-    {
-        throw new NotImplementedException();
+    public void Flush() =>
+        stream.Flush();
 
-    }
+    public void WriteRawTag(byte value) =>
+        stream.WriteByte(value);
 
-    public void WriteBool(bool value)
-    {
-        throw new NotImplementedException();
+    public void WriteBool(bool value) =>
+        stream.WriteByte(value ? (byte)1 : (byte)0);
 
-    }
+    public void WriteLength(int value) =>
+        WriteInt32(value);
 
     public void WriteInt32(int value)
     {
-        throw new NotImplementedException();
-
-        //if (value >= 0)
-        //{
-        //    WriteRawVarint32((uint)value);
-        //}
-        //else
-        //{
-        //    WriteRawVarint64((ulong)value);
-        //}
+        if (value >= 0)
+        {
+            WriteRawVariant32((uint)value);
+        }
+        else
+        {
+            WriteRawVariant64((ulong)value);
+        }
     }
 
-    public void WriteEnum(int value)
-    {
-        throw new NotImplementedException();
-
-    }
+    public void WriteEnum(int value) =>
+        WriteInt32(value);
 
     public void WriteString(string value)
     {
-        throw new NotImplementedException();
-
-        //int byteCount = Utf8Encoding.GetByteCount(value);
-        //WriteLength(byteCount);
-        //if (limit - position >= byteCount)
-        //{
-        //    if (byteCount == value.Length)
-        //    {
-        //        for (int i = 0; i < byteCount; i++)
-        //        {
-        //            buffer[position + i] = (byte)value[i];
-        //        }
-        //    }
-        //    else
-        //    {
-        //        Utf8Encoding.GetBytes(value, 0, value.Length, buffer, position);
-        //    }
-
-        //    position += byteCount;
-        //}
-        //else
-        //{
-        //    byte[] bytes = Utf8Encoding.GetBytes(value);
-        //    WriteRawBytes(bytes);
-        //}
+        byte[] buff = Encoding.UTF8.GetBytes(value);
+        WriteLength(buff.Length);
+        stream.Write(buff, 0, buff.Length); // ToDo: This is likely slow, we should optimize it with internal buffers
     }
 
     public void WriteMessage(IMessage message)
+    {
+        throw new NotImplementedException();
+    }
+
+    private static int ComputeRawVarint32Size(uint value)
+    {
+        var mask = 0xffffffff;
+        for (var size = 1; size < 6; size++)
+        {
+            mask <<= 7;
+            if ((value & mask) == 0)
+            {
+                return size;
+            }
+        }
+        throw new ArgumentOutOfRangeException(nameof(value));
+    }
+
+    private void WriteRawVariant32(uint value)
+    {
+        var buff = SonarAnalyzer.Protobuf.Encoder.ToVariant(value);
+        stream.Write(buff, 0, buff.Length);
+    }
+
+    private void WriteRawVariant64(ulong value)
     {
         throw new NotImplementedException();
     }

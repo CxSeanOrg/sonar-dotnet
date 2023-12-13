@@ -23,6 +23,9 @@ namespace Google.Protobuf;
 public interface IMessage
 {
     Reflection.MessageDescriptor Descriptor { get; }
+
+    int CalculateSize();
+    void WriteTo(CodedOutputStream output);
 }
 
 public interface IMessage<T> : IMessage { }
