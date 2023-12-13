@@ -31,5 +31,8 @@ public class MessageParser<T> : MessageParser
     public MessageParser(object argument) { }
 
     public T ParseDelimitedFrom(Stream stream) =>
+        // FIXME: This should not contain loading.
+        // FIXME: We should generate separate set of protobuf files into a different namespace, add Google.Protobuf dependency into the unit tests and let them use the correct depencency.
+        // FIXME: Effectively, one set of files will export the data, and unit test will have different types with the same content to load them back.
         throw new NotImplementedException();
 }
