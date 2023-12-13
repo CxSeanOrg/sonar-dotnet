@@ -18,15 +18,24 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-using System.IO;
+namespace SonarAnalyzer.Protobuf;
 
-namespace SonarAnalyzer.Protobuf
+public static class Encoder
 {
-    public static class IStreamExtensions
+    public static byte[] ToVariant(int value)
     {
-        public static void AppendDelimitedProtobuf(this Stream target, object message)
+        var ret = new List<byte>(); // FIXME: Too expensive, expand without list
+        if (value < 0)
         {
-
+            throw new NotImplementedException();    // FIXME: Not finished, needs zig-zag
         }
+        do
+        {
+            ret.Add((byte)(value < 128 ? value : (value & 0b01111111) | 0b10000000));
+            value >>= 7;
+        }
+        while (value > 0);
+        ret.Reverse();
+        return ret.ToArray();
     }
 }
