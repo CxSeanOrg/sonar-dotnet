@@ -32,7 +32,7 @@
   <ItemGroup>
     <!-- We need to update NuGet and JAR packaging after changing references -->
     <ProjectReference Include="..\SonarAnalyzer.CFG\SonarAnalyzer.CFG.csproj" />
-    <ProjectReference Include="D:\Projects\sonar-dotnet\analyzers\src\SonarAnalyzer.Protobuf\SonarAnalyzer.Protobuf.csproj" />
+    <ProjectReference Include="..\SonarAnalyzer.Protobuf\SonarAnalyzer.Protobuf.csproj" />
   </ItemGroup>
 
   <ItemGroup>

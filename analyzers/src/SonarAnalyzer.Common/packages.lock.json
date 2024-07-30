@@ -8,12 +8,6 @@
         "resolved": "3.25.1",
         "contentHash": "iUZvqVJ6O8enV5OuXtH7nYazr8sNyNyjcaATIUC2QN5Gh81oDNLO5+W5qy4z78gZ/gLAF022yweawZd4llfypw=="
       },
-      "Grpc.Tools": {
-        "type": "Direct",
-        "requested": "[2.26.0, )",
-        "resolved": "2.26.0",
-        "contentHash": "qTsydkJmYauTeKxetCUSJKh25u5Z3oSs7UokdBrpS+tiR8zZmI46mddfj0Bd7GChBvcbnbWtDnZcmEZFzRaF0w=="
-      },
       "Microsoft.CodeAnalysis.PerformanceSensitiveAnalyzers": {
         "type": "Direct",
         "requested": "[3.3.1, )",
