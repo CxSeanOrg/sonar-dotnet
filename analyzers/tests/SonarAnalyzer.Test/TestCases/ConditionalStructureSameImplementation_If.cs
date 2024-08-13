@@ -192,3 +192,31 @@ namespace Tests.TestCases
         public static int FooInt(this int a) => 0;
     }
 }
+
+// https://github.com/SonarSource/sonar-dotnet/issues/9637
+public class ResolvingNameOfExpression
+{
+    public IEnumerable<string> NameOfWithSameVariable(string str)
+    {
+        if (str.Length == 42)
+        {                               // Secondary
+            yield return nameof(str);
+        }
+        else if (str.Length == 43)
+        {                               // Noncompliant
+            yield return nameof(str);
+        }
+    }
+
+    public IEnumerable<string> NameOfWithDifferentVariable(string first, string second)
+    {
+        if (first.Length == second.Length)
+        {
+            yield return nameof(first);
+        }
+        else if (first.Length == 43)
+        {
+            yield return nameof(second);
+        }
+    }
+}

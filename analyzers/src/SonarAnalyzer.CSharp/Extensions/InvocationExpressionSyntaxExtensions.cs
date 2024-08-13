@@ -39,8 +39,20 @@ namespace SonarAnalyzer.Extensions
         internal static bool IsOnBase(this InvocationExpressionSyntax invocation) =>
             (invocation.Expression as MemberAccessExpressionSyntax)?.Expression is BaseExpressionSyntax;
 
-        internal static bool IsEqualTo(this InvocationExpressionSyntax first, InvocationExpressionSyntax second, SemanticModel model) =>
-            model.GetSymbolInfo(first).Symbol.Equals(model.GetSymbolInfo(second).Symbol);
+        internal static bool IsEqualTo(this InvocationExpressionSyntax first, InvocationExpressionSyntax second, SemanticModel model)
+        {
+            var firstSymbol = model.GetSymbolInfo(first).Symbol;
+            var secondSymbol = model.GetSymbolInfo(second).Symbol;
+            return (firstSymbol, secondSymbol) switch
+            {
+                // the nameof(someVariable) is considered an Invocation Expression, but it is not a method call, and GetSymbolInfo returns null for it.
+                (null, null) when first.GetName() == "nameof" && second.GetName() == "nameof" => model.GetConstantValue(first).Equals(model.GetConstantValue(second)),
+                (null, null) => false,
+                (null, not null) => false,
+                (not null, null) => false,
+                _ => firstSymbol.Equals(secondSymbol)
+            };
+        }
 
         internal static bool TryGetOperands(this InvocationExpressionSyntax invocation, out SyntaxNode left, out SyntaxNode right)
         {
