@@ -81,3 +81,22 @@ Namespace Tests.TestCases
         End Sub
     End Class
 End Namespace
+
+' https://github.com/SonarSource/sonar-dotnet/issues/9637
+Public Class ResolvingNameOfExpression
+    Public Iterator Function NameOfWithSameVariable(str As String) As IEnumerable(Of String)
+        If str.Length = 42 Then
+            Yield NameOf(str)
+        ElseIf str.Length = 43 Then
+            Yield NameOf(str)           ' Noncompliant
+        End If
+    End Function
+
+    Public Iterator Function NameOfWithDifferentVariable(first As String, second As String) As IEnumerable(Of String)
+        If first.Length = second.Length Then
+            Yield NameOf(first)
+        ElseIf first.Length = 43 Then
+            Yield NameOf(second)
+        End If
+    End Function
+End Class
